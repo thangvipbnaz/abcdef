@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhớ Nhớ Nhớ Em</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe6f7;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .main-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff66b2;
+            margin-bottom: 40px;
+            margin-top: -50px;
+            text-shadow: 2px 2px 6px rgba(255, 102, 178, 0.4);
+        }
+
+        .button {
+            padding: 15px 30px;
+            background-color: #ffb3c6;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #ff99b9;
+            transform: scale(1.1);
+        }
+
+        .popup {
+            position: absolute;
+            width: 250px;
+            height: 150px;
+            background-color: #fff0f5;
+            border: 2px solid #ffcce7;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: bounceIn 0.6s ease-out;
+        }
+
+        .popup-header {
+            background-color: #ff99cc;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ffcce7;
+        }
+
+        .popup-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #ff66b2;
+            font-weight: bold;
+        }
+
+        .popup-controls button {
+            background-color: #ffb3c6;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .popup-controls button:hover {
+            background-color: #ff99b9;
+            transform: scale(1.2);
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-text">Anh có điều muốn nói...</div>
+    <button class="button" onclick="createPopups()">Muốn nói là...</button>
+    <script>
+        let isClicked = false;
+
+        function createPopup() {
+            const popup = document.createElement("div");
+            popup.className = "popup";
+            const header = document.createElement("div");
+            header.className = "popup-header";
+            header.innerHTML = `
+                <span>Tràn ngập bộ nhớ</span>
+                <div class="popup-controls">
+                    <button onclick="minimizePopup(this)">-</button>
+                    <button onclick="maximizePopup(this)">+</button>
+                </div>
+            `;
+            const content = document.createElement("div");
+            content.className = "popup-content";
+            content.innerText = "Nhớ nhớ nhớ em!!!";
+            popup.appendChild(header);
+            popup.appendChild(content);
+            const x = Math.random() * (window.innerWidth - 250);
+            const y = Math.random() * (window.innerHeight - 150);
+            popup.style.left = `${x}px`;
+            popup.style.top = `${y}px`;
+            popup.style.position = "absolute";
+            document.body.appendChild(popup);
+        }
+
+        function minimizePopup(button) {
+            const popup = button.closest(".popup");
+            const content = popup.querySelector(".popup-content");
+            content.style.display = content.style.display === "none" ? "flex" : "none";
+        }
+
+        function maximizePopup(button) {
+            const popup = button.closest(".popup");
+            if (popup.style.width === "250px") {
+                popup.style.width = "400px";
+                popup.style.height = "300px";
+            } else {
+                popup.style.width = "250px";
+                popup.style.height = "150px";
+            }
+        }
+
+        function createPopups() {
+            if (isClicked) return;
+            isClicked = true;
+            let count = 0;
+            const interval = setInterval(() => {
+                createPopup();
+                count++;
+                if (count === 50) {
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
