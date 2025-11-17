@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+:root{
+    --color-one:#0C337C;
+    --color-two:#FFC300;
+    --color-text:#103178;
+    --font:'Inrria Serif', serif;
+}
+*{
+    user-select: none;
+    box-sizing: border-box;
+}
+body{
+    font-family: var(--font);
+}
+.container{
+    width: 100%;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+a{
+    text-decoration: none;
+}
+.button-one{
+    background: var(--color-text);
+    color: #fff;
+    padding: 12px 33px;
+    font-size: 18px;
+    border-radius: 45px;
+    border: 2px solid var(--color-text);
+    display: inline-block;
+}
+.button-one:hover{
+    color: var(--color-text);
+    background: #fff;
+}
+.button-two{
+    background: var(--color-two);
+    border-color: var(--color-two);
+}
+.button-two:hover{
+    color: var(--color-two);
+}
+@media (width:1200px){
+    .container{
+        max-width: 960px;
+    }
+}
+@media (width:992px){
+    .container{
+        max-width: 720px;
+    }
+}
+@media (max-width: 768px){
+    .container{
+        max-width:540px;
+    }
+}
+@media (max-width: 576px){
+    .container{
+        max-width:100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
